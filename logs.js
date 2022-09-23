@@ -56,7 +56,7 @@ module.exports = {
               return [
                 `<:replyAbove:1022900085002088520> Warn ID: ${warn.id}`,
                 `<:replycontinued:1015235683209707534> Moderator: ${
-                  `<@${moderator}>` || "Moderator left"
+                  moderator || "Moderator left"
                 }`,
                 `<:replycontinued:1015235683209707534> User: ${warn.userId}`,
                 `<:replycontinued:1015235683209707534> Reason: \`${warn.warnReason}\``,
