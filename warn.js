@@ -59,7 +59,7 @@ module.exports = {
           const { options, guild, member } = interaction;
           const user = options.getUser("user");
           const reason = options.getString("reason");
-          const warnD2 = new Date().toDateString()
+          const warnD2 = time()
 
           const newSchema = new warnSchema({
             _id: Types.ObjectId(),
@@ -67,7 +67,7 @@ module.exports = {
             userId: user.id,
             warnReason: reason,
             moderator: member.user.id,
-            warnD2: warnD2,
+            warnDate: warnD2,
           });
 
           newSchema.save().catch((err) => console.log(err));
