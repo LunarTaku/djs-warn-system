@@ -80,7 +80,8 @@ module.exports = {
             .setColor("#2f3136")
         ],
       })
-      .catch(async () => {
+      .catch(async (err) => {
+        console.log(err)
         await interaction.reply({
           embeds: [
             new EmbedBuilder()
