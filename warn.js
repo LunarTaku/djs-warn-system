@@ -60,6 +60,18 @@ module.exports = {
 
     newSchema.save().catch((err) => console.log(err));
 
+    await interaction.deferReply();
+
+    await interaction.reply({
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("User warned!")
+          .setDescription(`<@${user.id}> has been warned for \`${reason}\`!`)
+          .setColor("Red"),
+      ],
+      ephemeral: true,
+    });
+
     user
       .send({
         embeds: [
@@ -77,12 +89,12 @@ module.exports = {
                 inline: true,
               }
             )
-            .setColor("#2f3136")
+            .setColor("#2f3136"),
         ],
       })
       .catch(async (err) => {
-        console.log(err)
-        await interaction.reply({
+        console.log(err);
+        await interaction.followUp({
           embeds: [
             new EmbedBuilder()
               .setTitle("User has dms disabled so no DM was sent.")
@@ -90,44 +102,5 @@ module.exports = {
           ],
         });
       });
-
-    if (modData) {
-      await client.channels.cache.get(modData.channelId).send({
-        embeds: [
-          new EmbedBuilder().setTitle("New user warned!").addFields(
-            {
-              name: "Warned User",
-              value: `<@${user.id}>`,
-              inline: true,
-            },
-            {
-              name: "Warned By",
-              value: `<@${member.user.id}>`,
-              inline: true,
-            },
-            {
-              name: "Warn Date",
-              value: `${warnDate}`,
-              inline: true,
-            },
-            {
-              name: "Warn Reason",
-              value: `\`\`\`${reason}\`\`\``,
-            }
-          )
-          .setColor("#2f3136")
-        ],
-      });
-    }
-
-    await interaction.reply({
-      embeds: [
-        new EmbedBuilder()
-          .setTitle("User warned!")
-          .setDescription(`<@${user.id}> has been warned for \`${reason}\`!`)
-          .setColor("Red")
-      ],
-      ephemeral: true,
-    });
   },
 };
