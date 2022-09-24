@@ -35,6 +35,6 @@ A simple warn system for v14 bots using javascript, mongoDB, and nodejs!
 
 ## previews
 
-![image](https://cdn.discordapp.com/attachments/1022912249427402803/1022912373587198004/Screen_Shot_2022-09-23_at_7.47.18_PM.png)
-![image2](https://cdn.discordapp.com/attachments/1022912249427402803/1022912374044364840/Screen_Shot_2022-09-23_at_7.47.43_PM.png)
-![image3](https://cdn.discordapp.com/attachments/1022912249427402803/1022912374749012069/Screen_Shot_2022-09-23_at_7.47.56_PM.png)
+![logsSample](https://cdn.discordapp.com/attachments/1022912249427402803/1022912373587198004/Screen_Shot_2022-09-23_at_7.47.18_PM.png)
+![mologsSample](https://cdn.discordapp.com/attachments/1009933430085128242/1023207728258232380/Screen_Shot_2022-09-24_at_3.22.07_PM.png)
+![dmWarnSample](https://cdn.discordapp.com/attachments/1022912249427402803/1022912374749012069/Screen_Shot_2022-09-23_at_7.47.56_PM.png)
