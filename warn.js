@@ -59,7 +59,7 @@ module.exports = {
           const { options, guild, member } = interaction;
           const user = options.getUser("user");
           const reason = options.getString("reason");
-          const warnD2 = time()
+          const warnTime = time();
 
           const newSchema = new warnSchema({
             _id: Types.ObjectId(),
@@ -67,7 +67,7 @@ module.exports = {
             userId: user.id,
             warnReason: reason,
             moderator: member.user.id,
-            warnDate: warnD2,
+            warnDate: warnTime,
           });
 
           newSchema.save().catch((err) => console.log(err));
@@ -84,6 +84,45 @@ module.exports = {
             ephemeral: true,
           });
 
+          const modData = await modSchema.findOne({ guildId: guild.id });
+          const data = await warnSchema.findOne({
+            guildId: guild.id,
+            userId: user.id,
+          });
+
+          if (modData) {
+            client.channels.cache.get(modData.channelId).send({
+              embeds: [
+                new EmbedBuilder().setTitle("New user warned").addFields(
+                  {
+                    name: "User warned",
+                    value: `<@${user.id}>`,
+                    inline: true,
+                  },
+                  {
+                    name: "Warned by",
+                    value: `<@${member.user.id}>`,
+                    inline: true,
+                  },
+                  {
+                    name: "Warned at",
+                    value: `${warnTime}`,
+                    inline: true,
+                  },
+                  {
+                    name: "Warn ID",
+                    value: `\`${data._id}\``,
+                    inline: true,
+                  },
+                  {
+                    name: "Warn Reason",
+                    value: `\`\`\`${reason}\`\`\``,
+                  }
+                ),
+              ],
+            });
+          }
+
           user
             .send({
               embeds: [
@@ -97,7 +136,7 @@ module.exports = {
                     },
                     {
                       name: "Warned at",
-                      value: `${warnD2}`,
+                      value: `${warnTime}`,
                       inline: true,
                     }
                   )
@@ -140,3 +179,4 @@ module.exports = {
     }
   },
 };
+
