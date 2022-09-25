@@ -5,6 +5,8 @@
 # DJS Warn System (Discord.js V14)
 A simple warn system for v14 bots using javascript, mongoDB, and nodejs!
 
+## NOTE
+- For support join my [discord server](https://discord.gg/FMm7Rh8V) or create a discussion here!
 
 ## Dependencies
 - discord.js: `npm i discord.js`
